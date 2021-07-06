@@ -1,27 +1,30 @@
 import sys
 
-num1 = int(sys.argv[1])
-num2 = sys.argv[2]
-
-cont = 0 
-cont_num2 = 0
-num1_valido = True
-
-while True:
-   
-    if num1 < 0 or num1 > 9:
-        num1_valido = False
-        break        
-    else:      
-        unidade = num2 % 10          
-        if num1 == unidade:
-            cont = cont + 1     
+n = int(sys.argv[1])
+soma = 0
+maximo = 0
+crescente = False
+if n>=2:  
+    for i in range(0, n):
+        sequencia = int(sys.argv[i+2])
         
-        num2 = num2//10 
-        cont_num2 = cont_num2 + 1  
+        if i == 0:
+            num_anterior = sequencia
+            num_atual = sequencia
+            maior = menor = sequencia
+        
+        if sequencia > num_anterior:
+            soma = num_anterior + sequencia 
 
-
-if  num1_valido== True or (cont_num2 == 8 or cont_num2 == 9):
-    print(cont)
-elif (num1_valido == False) or (cont_num2 != 8) or (cont_num2 != 9):
+            if soma > maximo:
+                maximo = soma
+                        
+        if (i == n-1):
+            if (crescente == True):
+                print('max', maximo, 'seq.', str(menor), ',', str(maior))
+            else:
+                print('sem sequencia crescente')
+                
+        num_anterior = sequencia
+else:
     print('entrada invalida')
